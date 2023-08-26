@@ -1,0 +1,17 @@
+{
+    "id": "piaoyi-commentList",
+    "name": "piaoyi-commentList 评论列表",
+    "displayName": "piaoyi-commentList 评论列表",
+    "version": "1.0.0",
+    "description": "评论列表，元素多样化",
+    "keywords": [
+        "评论列表",
+        "元素多样化"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}

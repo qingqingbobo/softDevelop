@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 背景图在 style.css 中 -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+    <script type="text/javascript" src="js/rem.js"></script>
+	<script src="js/axios.min.js"></script>
+    <link rel="stylesheet" href="css/styleRe.css">
+    <title>个人博客管理系统</title>
+</head>
+
+<body style="visibility: hidden;">
+    <div class="container-flex" tabindex="0" hidefocus="true">
+        <div class="box-left">
+            <div class="left-top" style="width:100%; height: 150px;">
+                <div class="current-num">
+                    <div>博客总数</div>
+                    <p id="total-blogs"></p>
+                </div>
+            </div>
+            <div class="left-center">
+                <div class="title-box">
+                    <h6>博客类别分析</h6>
+                </div>
+                <div class="chart-box pie-chart" style="">
+                    <div id="pie_fanzui" style="width:100%;"></div>
+                </div>
+            </div>
+            <div class="left-bottom" class="select">
+                <div class="title-box">
+                    <h6>博客发布记录</h6>
+                </div>
+                <div class="chart-box">
+				<table class="table3">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>文章名</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tList">
+<!--                   <tr>
+                       <td>张梦</td>
+                       <td>人脸</td>
+                       <td>2018-11-01 13:51:23</td>
+                   </tr>
+                   <tr>
+                       <td>李阳荣</td>
+                       <td>APP</td>
+                       <td>2018-11-01 13:51:23</td>
+                   </tr>
+                   <tr>
+                        <td>张无双</td>
+                       <td>人脸</td>
+                       <td>2018-11-01 13:51:23</td>
+                   </tr>
+                   <tr>
+                       <td>李阳</td>
+                       <td>APP</td>
+                       <td>2018-11-01 13:51:23</td>
+                   </tr> -->
+
+                    </tbody>
+                </table>
+                
+                </div>
+            </div>
+        </div>
+        <div class="box-center">
+            <div class="center-top">
+                <h1><img src="images/恐龙.png" style="width:55px;margin-right:20px;"/>个人博客管理平台</h1>
+            </div>
+            <div class="center-center">
+                <div class="weather-box">
+                    <div class="data">
+                        <p class="time" id="time">00:00:00</p>
+                        <p id="date"></p>
+                    </div>
+                    <div class="weather">
+                        <img id="weatherImg" src="images/weather/阴.png" alt="">
+                        <div id="weather">
+                            <p class="active">阴</p>
+                            <p>23-28℃</p>
+                            <p>北碚区</p>
+                        </div>
+                    </div>
+                </div>
+                <img src="images/line_bg.png" alt="">
+                <div class="select-box" style="height: 0.3rem;">
+                    
+                    <div data-type="2">
+                        <div class="select" tabindex="0" hidefocus="true" >
+                           <p style="color:#FFFF00;font-weight:bold;">NO.1 北京：1.5k</p>
+                           <p style="color:#7FFF00;font-weight:bold;">NO.2 重庆：0.9k</p>
+                           <p style="color:#7FFFD4;font-weight:bold;">NO.3 四川：0.7k</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="center-bottom">
+                <div class="chart-box">
+                    <div id="china_map" style="width:100%;height:95%;"></div>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="box-right">
+			<div class="right-top" style="width:100%; height: 150px;">
+			    <div class="current-num">
+			        <div>用户总数</div>
+			        <p id="total-users"></p>
+			    </div>
+			</div>
+            <div class="right-center">
+                <div class="title-box">
+                    <h6 id="barTitle">博客作者码龄分布</h6>
+                    
+                </div>
+<!--                <p class="unit">单位：岁</p> -->
+                <div class="chart-box">
+                    <div id="pie_age" style="width:100%; height:90%;"></div>
+                </div>
+                
+            </div>
+<!--            <div class="right-center">
+            	
+                <div class="title-box">
+                    <h6>近七天社区活跃度</h6>
+                </div>
+                <div class="chart-box pie-chart">
+                    
+                    <div id="qufenbu_data"style="width:90%;height:120px;margin-left:10px;"></div>
+                    
+                </div>
+            </div> -->
+            
+            
+            <div class="right-bottom">
+                <div class="title-box">
+                	<p id="switchBtn"><span class="active" data-dataType="income">近七天发布博客统计</span></p>
+                    
+                </div>
+                <div id="line_time" style="width:85%;height:90%;margin-left:10px;margin-right:10px;"></div>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.min.js"></script>
+<script type="text/javascript" src="js/layer/laydate/laydate.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+<script type="text/javascript" src="js/infographic.js"></script>
+<script type="text/javascript" src="js/macarons.js"></script>
+<script type="text/javascript" src="js/shine.js"></script>
+<script type="text/javascript" src="js/baseRe.js"></script>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        $("body").css('visibility', 'visible');
+        var localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader').val()]
+        localStorage.setItem("data", localData);
+        
+    })
+</script>
+
+<!-- 博客总数请求 -->
+<script>
+	// 使用 Axios 发起 AJAX 请求
+    axios.get('http://localhost:8080/gettotalblogs')
+        .then(function (response) {
+			
+			console.log(response);
+			
+            var totalBlogs = response.data.result;
+
+            // 将数据显示在页面中
+            var totalBlogsElement = document.getElementById("total-blogs");
+            totalBlogsElement.textContent = totalBlogs;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
+
+<!-- 用户总数请求 -->
+<script>
+	// 使用 Axios 发起 AJAX 请求
+    axios.get('http://localhost:8080/gettotalusers')
+        .then(function (response) {
+			
+			console.log(response);
+			
+            var totalUsers = response.data.result;
+
+            // 将数据显示在页面中
+            var totalUsersElement = document.getElementById("total-users");
+            totalUsersElement.textContent = totalUsers;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
+
+<script>
+	var tbody = document.getElementById("tList");
+	var dataFromDatabase = [
+	  { name: "张梦", article: "人脸", time: "2018-11-01 13:51:23" },
+	  { name: "李阳荣", article: "APP", time: "2018-11-01 13:51:23" },
+	  { name: "张无双", article: "人脸", time: "2018-11-01 13:51:23" },
+	  { name: "李阳", article: "APP", time: "2018-11-01 13:51:23" }
+	];
+	
+	// 请求网络,获取数据
+	axios.get("http://localhost:8080/GetPost")
+	.then(function (response) {
+		console.log(response);
+		// 设置图表的数据
+		if (response.data.code * 1 == 200) {
+			var dataFromDatabase = response.data.result;
+			console.log(dataFromDatabase);
+			
+			for (var i = 0; i < dataFromDatabase.length; i++) {
+			  var data = dataFromDatabase[i];
+			
+			  var row = document.createElement("tr");
+			
+			  var nameCell = document.createElement("td");
+			  nameCell.textContent = data.name;
+			  row.appendChild(nameCell);
+			
+			  var articleCell = document.createElement("td");
+			  articleCell.textContent = data.article;
+			  row.appendChild(articleCell);
+			
+			  var timeCell = document.createElement("td");
+			  timeCell.textContent = data.time;
+			  row.appendChild(timeCell);
+			
+			  tbody.appendChild(row);
+			}
+			// 假设你在HTML文档中有一个id为"table-container"的元素作为表格的容器
+			var tableContainer = document.getElementById("table3");
+			tableContainer.appendChild(table);
+		}
+	});
+	
+</script>
+
+</html>

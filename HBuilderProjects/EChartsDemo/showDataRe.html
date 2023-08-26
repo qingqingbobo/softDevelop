@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/axios.min.js"></script>
+		<script src="js/echarts.min.js"></script>
+	</head>
+	
+	<body>
+		<div id="main" style="width: 600px; height: 400px; margin: 100px auto;"></div>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById("main"));
+			option = {
+			  title: {
+			    text: 'Nightingale Chart',
+			    subtext: 'Fake Data',
+			    left: 'center'
+			  },
+			  tooltip: {
+			    trigger: 'item',
+			    formatter: '{a} <br/>{b} : {c} ({d}%)'
+			  },
+			  legend: {
+			    left: 'center',
+			    top: 'bottom',
+			    data: [
+			      'rose1',
+			      'rose2',
+			      'rose3',
+			      'rose4',
+
+			    ]
+			  },
+			  toolbox: {
+			    show: true,
+			    feature: {
+			      mark: { show: true },
+			      dataView: { show: true, readOnly: false },
+			      restore: { show: true },
+			      saveAsImage: { show: true }
+			    }
+			  },
+			  series: [
+			    {
+			      name: 'Radius Mode',
+			      type: 'pie',
+			      radius: [20, 140],
+			      center: ['25%', '50%'],
+			      roseType: 'radius',
+			      itemStyle: {
+			        borderRadius: 5
+			      },
+			      label: {
+			        show: false
+			      },
+			      emphasis: {
+			        label: {
+			          show: true
+			        }
+			      },
+
+			    }
+			  ]
+			};
+			myChart.setOption(option);
+			
+			axios.get("http://localhost:8080/leixingtongji")
+			.then(function (res) {
+				console.log(res);
+				
+				if (res.data.code * 1 == 200) {
+					let optionData = {
+						dataset: {
+							source: res.data.result
+						}
+					}
+					myChart.setOption(optionData);
+				}
+
+			});
+
+			
+		</script>
+		
+	</body>
+</html>

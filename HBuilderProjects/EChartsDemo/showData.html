@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 引入两个库 -->
+		<script src="js/echarts.min.js"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<!-- 准备一个容器 -->
+		<div id="main" style="width: 600px; height: 400px; margin: 100px auto;"></div>
+		<script type="text/javascript">
+			// 初始化
+			var myCharts = echarts.init(document.getElementById("main"))
+			// 参数初始化
+			option = {
+			  title: {
+			    text: '电影排片情况',
+			    subtext: '8 月',
+			    left: 'center'
+			  },
+			  tooltip: {
+			    trigger: 'item'
+			  },
+			  legend: {
+			    orient: 'vertical',
+			    left: 'left'
+			  },
+			  series: [
+			    {
+			      name: '排片',
+			      type: 'pie',
+			      radius: '50%',
+
+			      emphasis: {
+			        itemStyle: {
+			          shadowBlur: 10,
+			          shadowOffsetX: 0,
+			          shadowColor: 'rgba(0, 0, 0, 0.5)'
+			        }
+			      }
+			    }
+			  ]
+			};
+			// 设置参数
+			myCharts.setOption(option);
+			
+			// 请求网络,获取数据
+			axios.get("http://localhost:8080/leixingtongji")
+			.then(function (response) {
+				console.log(response);
+				// 设置图表的数据
+				if (response.data.code * 1 == 200) {
+					let optionData={
+						// 设置数据集
+						dataset: {
+							source:response.data.result
+						}
+					}
+					// 重新设置新的数据
+					myCharts.setOption(optionData);
+				}
+			})
+		</script>
+		
+	</body>
+</html>
