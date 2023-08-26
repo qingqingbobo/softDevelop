@@ -1,0 +1,34 @@
+### Send POST request with json body
+POST http://localhost:8080/doLogin
+Content-Type: application/json
+
+{
+  "zhanghao": "ikun",
+  "mima": 1236
+}
+
+### Send POST request with json body
+POST http://localhost:8080/doRegister
+Content-Type: application/json
+
+{
+  "zhanghao": "xhhh4",
+  "mima": 1236
+}
+
+### GET request with a header
+GET http://localhost:8080/dianyings?leixingID=3
+Accept: application/json
+
+### Send POST request with json body
+POST http://localhost:8080/updAccount
+Content-Type: application/json
+
+{
+  "zhanghao": "xhh1",
+  "mima": 1236
+}
+
+### GET request with a header
+GET http://localhost:8080/leixingtongji
+Accept: application/json
